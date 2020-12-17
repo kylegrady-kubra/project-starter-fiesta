@@ -1,7 +1,7 @@
 /* * * * * * * * * * * * * * * * * * * *
  * MIT License
  *
- * Copyright (c) 2020
+ * Copyright (c) 2020 An Anonomous Goose
  */
 package project.starter.fiesta;
 
