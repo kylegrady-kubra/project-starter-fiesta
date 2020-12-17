@@ -1,0 +1,70 @@
+
+plugins {
+    // Apply the application plugin to add support for building a CLI application in Java.
+    id "application"
+    id "com.diffplug.spotless" version "5.8.2"
+    id "java"
+    id "jacoco"
+    id "org.owasp.dependencycheck" version "6.0.3"
+}
+
+repositories {
+    // Use JCenter for resolving dependencies.
+    jcenter()
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+spotless {
+    encoding "UTF-8" // all formats will be interpreted as UTF-8
+    File licenseFile = rootProject.file("license.java")
+    format "misc", SpotlessConfig.getMisc()
+    java SpotlessConfig.getJava(licenseFile)
+    groovyGradle SpotlessConfig.getGroovy(licenseFile)
+}
+
+jacoco {
+    toolVersion = "0.8.6"
+    reportsDir = file("$buildDir/reports/jacoco")
+}
+
+jacocoTestCoverageVerification {
+    violationRules {
+        rule {
+            limit {
+                minimum = 0.65
+            }
+        }
+    }
+}
+
+dependencyCheck {
+    failBuildOnCVSS = 4
+    failOnError = true
+
+    analyzers {
+        ossIndexEnabled = false
+    }
+}
+
+dependencies {
+    // Use JUnit Jupiter API for testing.
+    testImplementation "org.junit.jupiter:junit-jupiter-api:5.6.2"
+
+    // Use JUnit Jupiter Engine for testing.
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine"
+
+    // This dependency is used by the application.
+    implementation "com.google.guava:guava:30.0-jre"
+}
+
+application {
+    // Define the main class for the application.
+    mainClass = "project.starter.fiesta"
+}
+
+tasks.named("test") {
+    // Use junit platform for unit tests.
+    useJUnitPlatform()
+}
