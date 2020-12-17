@@ -25,5 +25,8 @@ hs_err_pid*
 # Ignore Gradle project-specific cache directory
 .gradle
 
+# Include the Gradle Wrapper
+!gradle/wrapper/gradle-wrapper.jar
+
 # Ignore Gradle build output directory
 build

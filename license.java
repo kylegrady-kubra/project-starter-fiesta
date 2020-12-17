@@ -1,5 +1,5 @@
 /* * * * * * * * * * * * * * * * * * * *
  * MIT License
  *
- * Copyright (c) $YEAR
+ * Copyright (c) $YEAR An Anonomous Goose
  */
